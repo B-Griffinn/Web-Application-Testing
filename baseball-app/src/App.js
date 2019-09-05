@@ -15,16 +15,25 @@ class App extends React.Component {
   handleDisplay = str => {
     switch(str) {
       // Strike logic
-      case 'strike' || 'foul':
+      case 'strike':
         if(this.state.strikes === 2) {
           this.setState({ 
             strikes: 0, balls: 0 });
         } else { this.setState({ strikes: this.state.strikes + 1 }) };
     break; //end strike || foul logic
 
+    // foul logic
+    case 'foul':
+        if(this.state.strikes === 2) {
+          return null;
+        } else {
+          this.setState({ strikes: this.state.strikes + 1 });
+        }
+    break;
+
     // balls logic
     case 'balls':
-    if(this.state.balls === 4) {
+    if(this.state.balls === 3) {
       this.setState({ strikes: 0, balls: 0, });
     } else {this.setState({ balls: this.state.balls + 1 })};
     break; //end balls logic
